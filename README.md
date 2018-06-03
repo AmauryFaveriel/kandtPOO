@@ -44,15 +44,39 @@ GET admin/index.php?a=page.show&id={id}
 GET admin/?a=page.show&id={id}
 ```
 
+```php
+PageController::show()
+PageModel::findOne($id)
+PageView::show($data)
+```
 
 
 ### add
 
+```
+GET admin/index.php?a=page.add
+GET admin/?a=page.add
+```
+
+```php
+PageController::add()
+PageModel::sqlAdd($data)
+PageView::add($model)
+```
 
 
 ### edit
 
+```
+GET admin/index.php?a=page.delete&id={id}
+GET admin/?a=page.delete&id={id}
+```
 
+```php
+PageController::delete()
+PageModel::sqlDelete($data)
+PageView::delete($model)
+```
 
 ### delete
 
