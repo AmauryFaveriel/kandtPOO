@@ -3,14 +3,14 @@
 ## Page
 
 ```sql
-CREATE TABLE IF NOT EXISTS `page` (
+CREATE TABLE IF NOT EXISTS `content` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `slug` varchar(120) NOT NULL,
   `title` varchar(110) NOT NULL,
   `h1` varchar(60) NOT NULL,
   `p` varchar(3000) NOT NULL,
-  `span-class` varchar(50) NOT NULL,
-  `span-text` varchar(100) NOT NULL,
+  `spanClass` varchar(50) NOT NULL,
+  `spanText` varchar(100) NOT NULL,
   `img-alt` varchar(100) NOT NULL,
   `img-src` varchar(2048) NOT NULL,
   `nav-title` varchar(30) NOT NULL,
