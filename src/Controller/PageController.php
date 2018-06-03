@@ -38,7 +38,7 @@ class PageController
 
     public function delete()
     {
-
+        $this->view->delete($this->model);
     }
 
     public function edit()

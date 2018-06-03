@@ -120,4 +120,18 @@ class PageModel
         PdoConnexion::errorHandler($stmt);
         return $this->pdo->lastInsertId();
     }
+
+    public function sqlDelete(array $data): void
+    {
+        $requete = "
+          DELETE FROM 
+          `content` 
+          WHERE 
+          `id` = :id
+          ;";
+        $stmt = $this->pdo->prepare($requete);
+        $stmt->bindParam(":id", $data['id']);
+        $stmt->execute();
+        PdoConnexion::errorHandler($stmt);
+    }
     }

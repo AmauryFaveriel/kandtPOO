@@ -35,7 +35,7 @@ class PageView
             <tr>
                 <td><a href="index.php?a=page.show&id=<?=$onePage['id']?>"><?=$onePage['id']?></a></td>
                 <td><?=$onePage['slug']?></td>
-                <td>Action</td>
+                <td><a href="index.php?a=page.delete&id=<?=$onePage['id']?>">Supprimer</a></td>
             </tr>
         <?php endforeach; endif;?>
         </table>
@@ -98,5 +98,22 @@ class PageView
 <?php
     }
 
-    
+    public function delete(PageModel $model)
+    {
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $data = $_POST['page'];
+            $model->sqlDelete($data);
+            header('Location:index.php?a=page.index');
+            exit;
+        }
+        $data = $model->findOne($_GET['id']);
+        ?>
+        <h1>Do you reallllyyyyy wish to delete <u><?=$data['slug']?></u></h1>
+        <form action="<?=$_SERVER['REQUEST_URI']?>" method="post">
+            <input type="hidden" name="page[id]" value="<?=$data['id']?>">
+            <input type="submit" value="Delete">
+            <input type="button" value="Cancel" onclick="history.back()">
+        </form>
+<?php
+    }
 }
