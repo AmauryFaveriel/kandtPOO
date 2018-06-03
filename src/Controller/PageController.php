@@ -1,6 +1,8 @@
 <?php
 
 namespace Controller;
+use Model\PageModel;
+use View\PageView;
 
 /**
  * Class PageController
@@ -9,14 +11,24 @@ namespace Controller;
  */
 class PageController
 {
+    private $model;
+
+    private $view;
+
+    public function __construct()
+    {
+        $this->model = new PageModel();
+        $this->view = new PageView();
+    }
+
     public function index()
     {
-        echo "It indexes!!!";
+        $this->view->index($this->model->findAll());
     }
 
     public function show()
     {
-        echo "Il fait show";
+        $this->view->show($this->model->findOne($_GET['id']));
     }
 
     public function add()
