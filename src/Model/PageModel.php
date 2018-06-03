@@ -77,10 +77,11 @@ class PageModel
     }
 
     /**
+     * @param array $data
      * @return int
      * @throws \Exception
      */
-    public function sqlAdd(): int
+    public function sqlAdd(array $data): int
     {
         $requete = "
         INSERT INTO `content`(
@@ -118,5 +119,19 @@ class PageModel
         $stmt->execute();
         PdoConnexion::errorHandler($stmt);
         return $this->pdo->lastInsertId();
+    }
+
+    public function sqlDelete(array $data): void
+    {
+        $requete = "
+          DELETE FROM 
+          `content` 
+          WHERE 
+          `id` = :id
+          ;";
+        $stmt = $this->pdo->prepare($requete);
+        $stmt->bindParam(":id", $data['id']);
+        $stmt->execute();
+        PdoConnexion::errorHandler($stmt);
     }
     }

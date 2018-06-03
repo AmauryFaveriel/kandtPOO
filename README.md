@@ -41,7 +41,7 @@ PageView::index($data)
 
 ```
 GET admin/index.php?a=page.show&id={id}
-GET admin/??a=page.show&id={id}
+GET admin/?a=page.show&id={id}
 ```
 
 

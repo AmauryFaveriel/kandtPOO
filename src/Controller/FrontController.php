@@ -22,6 +22,16 @@ class FrontController
                 $controller->show();
                 break;
 
+            case "page.add":
+                $controller = new PageController();
+                $controller->add();
+                break;
+
+            case "page.delete":
+                $controller = new PageController();
+                $controller->delete();
+                break;
+
             case "page.index":
             default:
                 // display page list
