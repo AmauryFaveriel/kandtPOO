@@ -33,7 +33,7 @@ class PageController
 
     public function add()
     {
-
+        $this->view->add($this->model);
     }
 
     public function delete()

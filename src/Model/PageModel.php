@@ -77,10 +77,11 @@ class PageModel
     }
 
     /**
+     * @param array $data
      * @return int
      * @throws \Exception
      */
-    public function sqlAdd(): int
+    public function sqlAdd(array $data): int
     {
         $requete = "
         INSERT INTO `content`(
