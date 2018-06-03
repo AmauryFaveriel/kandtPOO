@@ -67,6 +67,10 @@ PageView::add($model)
 
 ### edit
 
+
+
+### delete
+
 ```
 GET admin/index.php?a=page.delete&id={id}
 GET admin/?a=page.delete&id={id}
@@ -77,6 +81,3 @@ PageController::delete()
 PageModel::sqlDelete($data)
 PageView::delete($model)
 ```
-
-### delete
-
