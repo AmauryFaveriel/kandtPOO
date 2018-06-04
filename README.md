@@ -67,7 +67,16 @@ PageView::add($model)
 
 ### edit
 
+```
+GET admin/index.php?a=page.edit&id={id}
+GET admin/?a=page.edit&id={id}
+```
 
+```php
+PageController::edit()
+PageModel::sqlEdit($data)
+PageView::edit($model)
+```
 
 ### delete
 
