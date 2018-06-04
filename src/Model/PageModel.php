@@ -121,6 +121,10 @@ class PageModel
         return $this->pdo->lastInsertId();
     }
 
+    /**
+     * @param array $data
+     * @throws \Exception
+     */
     public function sqlDelete(array $data): void
     {
         $requete = "
@@ -131,6 +135,39 @@ class PageModel
           ;";
         $stmt = $this->pdo->prepare($requete);
         $stmt->bindParam(":id", $data['id']);
+        $stmt->execute();
+        PdoConnexion::errorHandler($stmt);
+    }
+
+    public function sqlEdit(array $data): void
+    {
+        $requete = "
+        UPDATE
+          `content`
+        SET
+          `slug` = :slug,
+          `title` = :title,
+          `h1` = :h1,
+          `p` = :p,
+          `spanClass` = :spanclass,
+          `spanText` = :spantext,
+          `img-alt` = :imgalt,
+          `img-src` = :imgsrc,
+          `nav-title` = :navtitle
+        WHERE
+          `id` = :id
+        ;";
+        $stmt = $this->pdo->prepare($requete);
+        $stmt->bindValue(":id", htmlspecialchars($data['id']));
+        $stmt->bindValue(":slug", htmlspecialchars($data['slug']));
+        $stmt->bindValue(":title", htmlspecialchars($data['title']));
+        $stmt->bindValue(":h1", htmlspecialchars($data['h1']));
+        $stmt->bindValue(":p", htmlspecialchars($data['p']));
+        $stmt->bindValue(":spanclass", htmlspecialchars($data['span-class']));
+        $stmt->bindValue(":spantext", htmlspecialchars($data['span-text']));
+        $stmt->bindValue(":imgalt", htmlspecialchars($data['img-alt']));
+        $stmt->bindValue(":imgsrc", htmlspecialchars($data['img-src']));
+        $stmt->bindValue(":navtitle", htmlspecialchars($data['nav-title']));
         $stmt->execute();
         PdoConnexion::errorHandler($stmt);
     }

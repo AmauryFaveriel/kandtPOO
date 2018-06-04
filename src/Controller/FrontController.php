@@ -32,6 +32,11 @@ class FrontController
                 $controller->delete();
                 break;
 
+            case "page.edit":
+                $controller = new PageController();
+                $controller->edit();
+                break;
+
             case "page.index":
             default:
                 // display page list

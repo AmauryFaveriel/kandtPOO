@@ -43,7 +43,7 @@ class PageController
 
     public function edit()
     {
-
+        $this->view->edit($this->model);
     }
 
 }
