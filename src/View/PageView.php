@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 /**
  * Created by PhpStorm.
  * User: mrfvr
@@ -11,6 +12,16 @@ namespace View;
 
 use Model\PageModel;
 
+=======
+
+namespace View;
+
+/**
+ * Class PageView
+ * @author Yann Le Scouarnec <bunkermaster@gmail.com>
+ * @package View
+ */
+>>>>>>> c54fad69b12de39333271ea54eec0ec9de786e2d
 class PageView
 {
     /**
@@ -19,7 +30,10 @@ class PageView
     public function index(?array $data): void
     {
 ?>
+<<<<<<< HEAD
         <a href="index.php?a=page.add">Ajouter une page</a>
+=======
+>>>>>>> c54fad69b12de39333271ea54eec0ec9de786e2d
         <h1>List pages</h1>
         <table>
             <tr>
@@ -31,6 +45,7 @@ class PageView
             <tr>
                 <td colspan="3">No pages</td>
             </tr>
+<<<<<<< HEAD
         <?php else:foreach ($data as $onePage):?>
             <tr>
                 <td><a href="index.php?a=page.show&id=<?=$onePage['id']?>"><?=$onePage['id']?></a></td>
@@ -145,4 +160,18 @@ class PageView
         </form>
 <?php
     }
+=======
+        <?php else:?>
+        <?php foreach($data as $page):?>
+            <tr>
+                <td><?=$page['id'] ?? '&nbsp;'?></td>
+                <td><?=$page['slug'] ?? '&nbsp;'?></td>
+                <td>Action</td>
+            </tr>
+        <?php endforeach;?>
+        <?php endif;?>
+        </table>
+<?php
+    }
+>>>>>>> c54fad69b12de39333271ea54eec0ec9de786e2d
 }

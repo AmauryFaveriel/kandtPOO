@@ -1,6 +1,8 @@
 <?php
 
-namespace Controller;
+namespace Helper;
+
+use Controller\PageController;
 
 /**
  * Class FrontController
@@ -23,6 +25,7 @@ class FrontController
                 break;
 
             case "page.add":
+<<<<<<< HEAD:src/Controller/FrontController.php
                 $controller = new PageController();
                 $controller->add();
                 break;
@@ -35,6 +38,14 @@ class FrontController
             case "page.edit":
                 $controller = new PageController();
                 $controller->edit();
+=======
+                break;
+
+            case "page.delete":
+                break;
+
+            case "page.edit":
+>>>>>>> c54fad69b12de39333271ea54eec0ec9de786e2d:src/Helper/FrontController.php
                 break;
 
             case "page.index":

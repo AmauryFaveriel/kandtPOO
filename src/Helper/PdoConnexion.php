@@ -7,13 +7,16 @@ namespace Helper;
  * @author Yann Le Scouarnec <bunkermaster@gmail.com>
  * @package Helper
  */
-class PdoConnexion
+final class PdoConnexion
 {
     /**
      * @var
      */
     private static $pdo;
 
+    /**
+     * PdoConnexion constructor.
+     */
     private function __construct()
     {
     }
@@ -34,6 +37,7 @@ class PdoConnexion
 
         return self::$pdo;
     }
+<<<<<<< HEAD
 
     /**
      * @param \PDOStatement $stmt
@@ -46,3 +50,6 @@ class PdoConnexion
         }
     }
 }
+=======
+}
+>>>>>>> c54fad69b12de39333271ea54eec0ec9de786e2d

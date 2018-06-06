@@ -44,11 +44,14 @@ GET admin/index.php?a=page.show&id={id}
 GET admin/?a=page.show&id={id}
 ```
 
+<<<<<<< HEAD
 ```php
 PageController::show()
 PageModel::findOne($id)
 PageView::show($data)
 ```
+=======
+>>>>>>> c54fad69b12de39333271ea54eec0ec9de786e2d
 
 
 ### add
