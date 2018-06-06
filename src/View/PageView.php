@@ -1,18 +1,11 @@
 <?php
-<<<<<<< HEAD
+
 /**
  * Created by PhpStorm.
- * User: mrfvr
+ * User: AmauryFaveriel
  * Date: 30/05/2018
  * Time: 17:19
  */
-
-namespace View;
-
-
-use Model\PageModel;
-
-=======
 
 namespace View;
 
@@ -21,7 +14,7 @@ namespace View;
  * @author Yann Le Scouarnec <bunkermaster@gmail.com>
  * @package View
  */
->>>>>>> c54fad69b12de39333271ea54eec0ec9de786e2d
+
 class PageView
 {
     /**
@@ -30,10 +23,6 @@ class PageView
     public function index(?array $data): void
     {
 ?>
-<<<<<<< HEAD
-        <a href="index.php?a=page.add">Ajouter une page</a>
-=======
->>>>>>> c54fad69b12de39333271ea54eec0ec9de786e2d
         <h1>List pages</h1>
         <table>
             <tr>
@@ -45,19 +34,19 @@ class PageView
             <tr>
                 <td colspan="3">No pages</td>
             </tr>
-<<<<<<< HEAD
         <?php else:foreach ($data as $onePage):?>
             <tr>
-                <td><a href="index.php?a=page.show&id=<?=$onePage['id']?>"><?=$onePage['id']?></a></td>
+                <td><a href="<?=KANDT_ROOT_URI.KANDT_ACTION_PARAM.'=page.show&id='.$onePage['id']?>"><?=$onePage['id']?></a></td>
                 <td><?=$onePage['slug']?></td>
                 <td>
-                    <a href="index.php?a=page.edit&id=<?=$onePage['id']?>">Editer</a>
-                    <a href="index.php?a=page.delete&id=<?=$onePage['id']?>">Supprimer</a>
+                    <a href="<?=KANDT_ROOT_URI.KANDT_ACTION_PARAM.'=page.edit&id='.$onePage['id']?>">Editer</a>
+                    <a href="<?=KANDT_ROOT_URI.KANDT_ACTION_PARAM.'=page.delete&id='.$onePage['id']?>">Supprimer</a>
                 </td>
             </tr>
         <?php endforeach; endif;?>
         </table>
 <?php
+        $this->form('add', [], 'Ajouter');
     }
 
     /**
@@ -66,10 +55,10 @@ class PageView
     public function show(?array $data): void
     {
 ?>
-        <a href="index.php">Liste</a>
+        <a href="<?=KANDT_ROOT_URI.KANDT_ACTION_PARAM.'=page.index'?>">Liste</a>
     <h1><?=$data['title']?></h1>
-    <a href="index.php?a=page.edit&id=<?=$data['id']?>">Edit</a>
-    <a href="index.php?a=page.delete&id=<?=$data['id']?>">Delete</a>
+    <a href="<?=KANDT_ROOT_URI.KANDT_ACTION_PARAM.'=page.edit&id='.$data['id']?>">Edit</a>
+    <a href="<?=KANDT_ROOT_URI.KANDT_ACTION_PARAM.'=page.delete&id='.$data['id']?>">Delete</a>
     <h2>id</h2>
     <p><?=$data['id']?></p>
     <h2>slug</h2>
@@ -92,39 +81,43 @@ class PageView
 <?php
     }
 
-    public function add(PageModel $model)
+    /**
+     * @param $action
+     * @param array $data
+     * @param $submitValue
+     */
+    public function form($action, $data = [], $submitValue)
     {
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            $data = $_POST['page'];
-            $id = $model->sqlAdd($data);
-            header('Location:index.php?a=page.show&id='.$id);
-            exit;
-        }
-        ?>
-        <form action="" method="post">
-            <label>slug</label><br><input type="text" name="page[slug]" value="" /><br>
-            <label>title</label><br><input type="text" name="page[title]" value="" /><br>
-            <label>h1</label><br><input type="text" name="page[h1]" value="" /><br>
-            <label>p</label><br><textarea name="page[p]" id="" cols="30" rows="10"></textarea><br>
-            <label>span-class</label><br><input type="text" name="page[span-class]" value="" /><br>
-            <label>span-text</label><br><input type="text" name="page[span-text]" value="" /><br>
-            <label>img-alt</label><br><input type="text" name="page[img-alt]" value="" /><br>
-            <label>img-src</label><br><input type="text" name="page[img-src]" value="" /><br>
-            <label>nav-title</label><br><input type="text" name="page[nav-title]" value="" /><br>
-            <input type="submit" value="Ajouter">
+?>
+        <form action="<?=KANDT_ROOT_URI.KANDT_ACTION_PARAM.'=page.'.$action?>" method="post">
+            <input type="hidden" name="page[id]" value="<?=$data['id'] ?? ''?>">
+            <label>slug</label><br><input type="text" name="page[slug]" value="<?=$data['slug'] ?? ''?>" /><br>
+            <label>title</label><br><input type="text" name="page[title]" value="<?=$data['title'] ?? ''?>" /><br>
+            <label>h1</label><br><input type="text" name="page[h1]" value="<?=$data['h1'] ?? ''?>" /><br>
+            <label>p</label><br><textarea name="page[p]" id="" cols="30" rows="10"><?=$data['p'] ?? ''?></textarea><br>
+            <label>span-class</label><br><input type="text" name="page[span-class]" value="<?=$data['spanClass'] ?? ''?>" /><br>
+            <label>span-text</label><br><input type="text" name="page[span-text]" value="<?=$data['spanText'] ?? ''?>" /><br>
+            <label>img-alt</label><br><input type="text" name="page[img-alt]" value="<?=$data['img-alt'] ?? ''?>" /><br>
+            <label>img-src</label><br><input type="text" name="page[img-src]" value="<?=$data['img-src'] ?? ''?>" /><br>
+            <label>nav-title</label><br><input type="text" name="page[nav-title]" value="<?=$data['nav-title'] ?? ''?>" /><br>
+            <input type="submit" value="<?=$submitValue?>">
         </form>
 <?php
     }
 
-    public function delete(PageModel $model)
+    /**
+     *
+     */
+    public function add()
     {
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            $data = $_POST['page'];
-            $model->sqlDelete($data);
-            header('Location:index.php?a=page.index');
-            exit;
-        }
-        $data = $model->findOne($_GET['id']);
+
+    }
+
+    /**
+     * @param array|null $data
+     */
+    public function delete(?array $data): void
+    {
         ?>
         <h1>Voulez-vous supprimer <u><?=$data['slug']?></u></h1>
         <form action="<?=$_SERVER['REQUEST_URI']?>" method="post">
@@ -135,43 +128,11 @@ class PageView
 <?php
     }
 
-    public function edit(PageModel $model)
+    /**
+     * @param array|null $data
+     */
+    public function edit(?array $data): void
     {
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            $data = $_POST['page'];
-            $model->sqlEdit($data);
-            header('Location:index.php?a=page.show&id='.$data['id']);
-            exit;
-        }
-        $data = $model->findOne($_GET['id']);
-        ?>
-        <form action="" method="post">
-            <input type="hidden" name="page[id]" value="<?=$data['id']?>">
-            <label>slug</label><br><input type="text" name="page[slug]" value="<?=$data['slug']?>" /><br>
-            <label>title</label><br><input type="text" name="page[title]" value="<?=$data['title']?>" /><br>
-            <label>h1</label><br><input type="text" name="page[h1]" value="<?=$data['h1']?>" /><br>
-            <label>p</label><br><textarea name="page[p]" id="" cols="30" rows="10"><?=$data['p']?></textarea><br>
-            <label>span-class</label><br><input type="text" name="page[span-class]" value="<?=$data['spanClass']?>" /><br>
-            <label>span-text</label><br><input type="text" name="page[span-text]" value="<?=$data['spanText']?>" /><br>
-            <label>img-alt</label><br><input type="text" name="page[img-alt]" value="<?=$data['img-alt']?>" /><br>
-            <label>img-src</label><br><input type="text" name="page[img-src]" value="<?=$data['img-src']?>" /><br>
-            <label>nav-title</label><br><input type="text" name="page[nav-title]" value="<?=$data['nav-title']?>" /><br>
-            <input type="submit" value="Modifier">
-        </form>
-<?php
+        $this->form('edit', $data, 'Modifier');
     }
-=======
-        <?php else:?>
-        <?php foreach($data as $page):?>
-            <tr>
-                <td><?=$page['id'] ?? '&nbsp;'?></td>
-                <td><?=$page['slug'] ?? '&nbsp;'?></td>
-                <td>Action</td>
-            </tr>
-        <?php endforeach;?>
-        <?php endif;?>
-        </table>
-<?php
-    }
->>>>>>> c54fad69b12de39333271ea54eec0ec9de786e2d
 }

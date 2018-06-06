@@ -1,50 +1,14 @@
 <?php
 
 namespace Controller;
-use Model\PageModel;
-use View\PageView;
-
-use Model\PageModel;
-use View\PageView;
-
+use Helper\AbstractController;
 /**
  * Class PageController
  * @author Yann Le Scouarnec <bunkermaster@gmail.com>
  * @package Controller
  */
-class PageController
+class PageController extends AbstractController
 {
-<<<<<<< HEAD
-    private $model;
-
-    private $view;
-
-=======
-    /**
-     * @var PageModel
-     */
-    private $model;
-
-    /**
-     * @var PageView
-     */
-    private $view;
-
-    /**
-     * PageController constructor.
-     */
->>>>>>> c54fad69b12de39333271ea54eec0ec9de786e2d
-    public function __construct()
-    {
-        $this->model = new PageModel();
-        $this->view = new PageView();
-    }
-
-<<<<<<< HEAD
-    public function index()
-    {
-        $this->view->index($this->model->findAll());
-=======
     /**
      * @throws \Exception
      */
@@ -52,44 +16,55 @@ class PageController
     {
         $data = $this->model->findAll();
         $this->view->index($data);
->>>>>>> c54fad69b12de39333271ea54eec0ec9de786e2d
     }
 
     /**
-     *
+     * @throws \Exception
      */
     public function show()
     {
-<<<<<<< HEAD
-        $this->view->show($this->model->findOne($_GET['id']));
-=======
-//        $data = $this->model->findBySlug($slug);
-        echo "Il fait show";
->>>>>>> c54fad69b12de39333271ea54eec0ec9de786e2d
+        $this->view->show($this->model->find($_GET['id']));
     }
 
     /**
-     *
+     * @throws \Exception
      */
     public function add()
     {
-        $this->view->add($this->model);
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = $_POST['page'];
+            $id = $this->model->add($data);
+            header('Location:'.KANDT_ROOT_URI.KANDT_ACTION_PARAM.'=page.show&id=' . $id);
+            exit;
+        }
     }
 
     /**
-     *
+     * @throws \Exception
      */
     public function delete()
     {
-        $this->view->delete($this->model);
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $data = $_POST['page'];
+            $this->model->delete($data['id']);
+            header('Location:index.php?a=page.index');
+            exit;
+        }
+        $this->view->delete($this->model->find($_GET['id']));
     }
 
     /**
-     *
+     * @throws \Exception
      */
     public function edit()
     {
-        $this->view->edit($this->model);
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $data = $_POST['page'];
+            $this->model->edit($data);
+            header('Location:index.php?a=page.show&id='.$data['id']);
+            exit;
+        }
+        $this->view->edit($this->model->find($_GET['id']));
     }
 
 }

@@ -44,14 +44,11 @@ GET admin/index.php?a=page.show&id={id}
 GET admin/?a=page.show&id={id}
 ```
 
-<<<<<<< HEAD
 ```php
 PageController::show()
-PageModel::findOne($id)
+PageModel::find($id)
 PageView::show($data)
 ```
-=======
->>>>>>> c54fad69b12de39333271ea54eec0ec9de786e2d
 
 
 ### add
@@ -63,7 +60,7 @@ GET admin/?a=page.add
 
 ```php
 PageController::add()
-PageModel::sqlAdd($data)
+PageModel::add($data)
 PageView::add($model)
 ```
 
@@ -77,7 +74,7 @@ GET admin/?a=page.edit&id={id}
 
 ```php
 PageController::edit()
-PageModel::sqlEdit($data)
+PageModel::edit($data)
 PageView::edit($model)
 ```
 
@@ -90,6 +87,6 @@ GET admin/?a=page.delete&id={id}
 
 ```php
 PageController::delete()
-PageModel::sqlDelete($data)
+PageModel::delete($data)
 PageView::delete($model)
 ```
